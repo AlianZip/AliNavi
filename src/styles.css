@@ -1,4 +1,4 @@
-.logo.vanilla:hover {
+/* .logo.vanilla:hover {
   filter: drop-shadow(0 0 2em #ffe21c);
 }
 :root {
@@ -109,4 +109,97 @@ button {
   button:active {
     background-color: #0f0f0f69;
   }
+} */
+
+
+/* Общий стиль для тела */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
 }
+
+/* Контейнер для вкладок */
+.tab-container {
+  display: flex;
+  align-items: center; /* Выравнивание по вертикали */
+  border-bottom: 1px solid #ccc;
+  background-color: #f9f9f9;
+  overflow-x: auto; /* Горизонтальная прокрутка */
+  white-space: nowrap; /* Запрещаем перенос строк */
+  padding: 0 10px; /* Отступы по краям */
+}
+
+/* Контейнер для самих вкладок */
+.tabs {
+  display: flex;
+  flex-grow: 1; /* Занимает всё доступное пространство */
+  gap: 5px; /* Отступ между вкладками */
+}
+
+/* Кнопки вкладок */
+.tab-button {
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+  font-size: 14px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex-shrink: 1;
+}
+
+/* Активная вкладка */
+.tab-button.active {
+  background-color: #ffffff;
+  border-bottom: 2px solid #007bff;
+  color: #007bff;
+  font-weight: bold;
+}
+
+/* Иконка закрытия */
+.close-tab {
+  margin-left: 8px;
+  font-size: 16px;
+  color: #666;
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 50%;
+  transition: background-color 0.3s;
+}
+
+.close-tab:hover {
+  background-color: #ff4d4d; /* Красный фон при наведении на кнопку закрытия */
+  color: white;
+}
+
+/* Наведение на вкладку */
+.tab-button:hover {
+  background-color: #e9ecef; /* Светло-серый фон при наведении */
+}
+
+/* Кнопка добавления новой вкладки */
+.add-tab {
+  flex-shrink: 0; /* Запрещаем уменьшение кнопки */
+  padding: 8px 12px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  border-radius: 4px; /* Скругляем углы */
+}
+
+
+
+/* Основное содержимое */
+.content {
+  padding: 20px;
+  min-height: 200px;
+}
+
