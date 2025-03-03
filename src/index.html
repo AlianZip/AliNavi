@@ -13,21 +13,36 @@
       <div id="tab-container">
         <div class="tabs">
           <!-- no tabs?( -->
-        </div>
-        <button id="add-tab" class="add-tab">+</button>
-      </div>
-      <div id = "btns-goto">
-        
-      </div>
-      <div id = "input-path">
 
+          <button id="add-tab" class="add-tab">+</button>
+        </div>
       </div>
+
+
+      <div class = "nav-container">
+        <div class = "navigation">
+          <div id = "btns-goto">
+            <button id="btn-back" class="goto-btn">←</button>
+            <button id="btn-forward" class="goto-btn">→</button>
+            <button id="btn-refresh" class="goto-btn">↻</button>
+          </div>
+          <div id = "input-path">
+            <input type="text" value="/current/path" readonly style="width: 100%;"/>
+          </div>
+        </div>
+      </div>
+
+
       <div id = "file-manager">
 
       </div>
+
+
       <div id = "file-space">
         <p>Здесь будет содержимое активной вкладки.</p>
       </div>
+      
+      
       <div id = "info-space">
 
       </div>

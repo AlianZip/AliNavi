@@ -1,8 +1,12 @@
 const { invoke } = window.__TAURI__.core;
 
-
 const tabsContainer = document.querySelector('.tabs');
 const addTabButton = document.getElementById('add-tab');
+const btnBack = document.getElementById('btn-back');
+const btnForward = document.getElementById('btn-forward');
+const btnRefresh = document.getElementById('btn-refresh');
+const inputPath = document.querySelector('#input-path input');
+
 
 
 async function greet() {
@@ -19,30 +23,28 @@ async function greet() {
 //   });
 // });
 
-//Func for add new tab
+
 function createTab(title = `Вкладка ${document.querySelectorAll('.tab-button').length + 1}`) {
-  //Create new tab
   const tabButton = document.createElement('button');
   tabButton.classList.add('tab-button');
   tabButton.textContent = title;
 
-  //Add close-btn
   const closeButton = document.createElement('span');
   closeButton.classList.add('close-tab');
   closeButton.textContent = '×';
   tabButton.appendChild(closeButton);
 
-  //Add event for close
+  //Delete tabs
   closeButton.addEventListener('click', (e) => {
     e.stopPropagation();
     const allTabs = document.querySelectorAll('.tab-button');
     
-    // Проверяем, есть ли хотя бы две вкладки
+    //2 or more tabs
     if (allTabs.length > 1) {
       tabButton.remove();
       adjustTabsWidth();
-  
-      // Если удаляем активную вкладку, делаем активной следующую
+
+      //Active next if now active is delete
       if (tabButton.classList.contains('active')) {
         const nextTab = document.querySelector('.tab-button');
         if (nextTab) {
@@ -54,35 +56,64 @@ function createTab(title = `Вкладка ${document.querySelectorAll('.tab-but
     }
   });
 
-  //Event for active tab
+  //Active tab
   tabButton.addEventListener('click', () => {
     document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
     tabButton.classList.add('active');
   });
 
-  //add tab to container
-  tabsContainer.appendChild(tabButton);
+  //Add new tab
+  tabsContainer.insertBefore(tabButton, addTabButton);
   adjustTabsWidth();
 }
 
-//Func for adjust tabs width
 function adjustTabsWidth() {
   const tabButtons = document.querySelectorAll('.tab-button');
   const containerWidth = tabsContainer.offsetWidth;
   const totalTabs = tabButtons.length;
 
-  //Min width for tab
   const minWidth = Math.max(100, containerWidth / totalTabs);
   tabButtons.forEach(tab => {
     tab.style.flexBasis = `${minWidth}px`;
   });
 }
 
-//add event to create tab
 addTabButton.addEventListener('click', () => {
   createTab();
 });
 
-//Create 1 tab
 createTab('Вкладка 1');
 document.querySelector('.tab-button').classList.add('active');
+
+
+//Back
+btnBack.addEventListener('click', () => {
+  console.log('Кнопка "Назад" нажата');
+  
+});
+
+//Forward
+btnForward.addEventListener('click', () => {
+  console.log('Кнопка "Вперёд" нажата');
+  
+});
+
+//Refresh
+btnRefresh.addEventListener('click', () => {
+  console.log('Кнопка "Обновить" нажата');
+
+});
+
+
+
+inputPath.addEventListener('focus', () => {
+  inputPath.removeAttribute('readonly');
+  inputPath.style.backgroundColor = 'white';
+  inputPath.style.color = '#333';
+});
+
+inputPath.addEventListener('blur', () => {
+  inputPath.setAttribute('readonly', true);
+  inputPath.style.backgroundColor = '#f9f9f9';
+  inputPath.style.color = '#666';
+});
